@@ -3,6 +3,7 @@ module github.com/frealcone/roach
 go 1.21.12
 
 require (
+	github.com/robfig/cron/v3 v3.0.0 // indirect
 	golang.org/x/net v0.27.0 // indirect
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/text v0.16.0 // indirect
