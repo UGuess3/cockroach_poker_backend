@@ -73,10 +73,16 @@ func NewSnowflakeIdGenerator(timestampBitNum int, dataCenterBitNum int,
 	generator.timestampLock = sync.Mutex{}
 	generator.curTimestamp = uint64(time.Now().UnixMilli())
 	generator.curId = uint64(0)
-	// TODO: read data center id and service id from config file
-	generator.dataCenterId = uint64(0)
-	generator.serviceId = uint64(0)
-	// END TODO
+
+	var err error
+	generator.dataCenterId, err = ConfigGetUint64("data_center_id")
+	if err != nil {
+		return nil, err
+	}
+	generator.serviceId, err = ConfigGetUint64("service_id")
+	if err != nil {
+		return nil, err
+	}
 
 	return generator, nil
 }
